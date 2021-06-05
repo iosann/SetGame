@@ -14,6 +14,7 @@
 		D0593CA82668E3A700271977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0593CA62668E3A700271977 /* LaunchScreen.storyboard */; };
 		D0593CB42668F5A600271977 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0593CB32668F5A600271977 /* Constants.swift */; };
 		D0593CB72668F99200271977 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0593CB62668F99200271977 /* Card.swift */; };
+		D0713D18266ABF0E00FFBCE1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0713D17266ABF0E00FFBCE1 /* UIColor.swift */; };
 		D0B366882668FFED00B9EBBA /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B366872668FFED00B9EBBA /* Deck.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		D0593CA92668E3A700271977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0593CB32668F5A600271977 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D0593CB62668F99200271977 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		D0713D17266ABF0E00FFBCE1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		D0B366872668FFED00B9EBBA /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,8 +70,17 @@
 				D0593CA62668E3A700271977 /* LaunchScreen.storyboard */,
 				D0593CA92668E3A700271977 /* Info.plist */,
 				D0593CB32668F5A600271977 /* Constants.swift */,
+				D0713D16266ABEF400FFBCE1 /* Extension */,
 			);
 			path = Set;
+			sourceTree = "<group>";
+		};
+		D0713D16266ABEF400FFBCE1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D0713D17266ABF0E00FFBCE1 /* UIColor.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		D0B3668A2668FFF500B9EBBA /* Model */ = {
@@ -152,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0593CA02668E39A00271977 /* SetViewController.swift in Sources */,
+				D0713D18266ABF0E00FFBCE1 /* UIColor.swift in Sources */,
 				D0593C9C2668E39A00271977 /* AppDelegate.swift in Sources */,
 				D0B366882668FFED00B9EBBA /* Deck.swift in Sources */,
 				D0593CB42668F5A600271977 /* Constants.swift in Sources */,
