@@ -8,6 +8,8 @@
 import UIKit
 
 struct Constants {
-	static let cardCornerRadius: CGFloat = 8
+	static let cornerRadius: CGFloat = 8.0
+	static let borderWidth: CGFloat = 2.0
+	static let borderColor: CGColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
 }
 

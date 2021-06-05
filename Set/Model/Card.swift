@@ -11,33 +11,39 @@ struct Card {
 	let type: TypeCard
 	let quantity: Quantity
 	let color: Color
-	let filling: Filling
+	let shading: Shading
 
 	enum TypeCard: String {
-		case triangle = "△"
-		case circle = "○"
-		case square = "□"
+		case shapeOne = "▲"
+		case shapeTwo = "●"
+		case shapeThree = "■"
 
-		static let all = [TypeCard.triangle, .circle, .square]
+		static let all = [TypeCard.shapeOne, .shapeTwo, .shapeThree]
 	}
 
 	enum Quantity: Int {
-		case one = 1
-		case two = 2
-		case three = 3
+		case one = 1, two, three
 
 		static let all = [Quantity.one, .two, .three]
 	}
 
-	enum Color {
-		case red, green, violet
+	enum Color: String {
+		case colorOne = "#FF0000FF"
+		case colorTwo = "#00FF00FF"
+		case colorThree = "0000FFFF"
 
-		static let all = [Color.red, .green, .violet]
+		static let all = [Color.colorOne, .colorTwo, .colorThree]
 	}
 
-	enum Filling {
-		case empty, shaded, paintedOver
+	enum Shading {
+		case shadingOne, shadingTwo, shadingThree
 
-		static let all = [Filling.empty, .shaded, .paintedOver]
+		static let all = [Shading.shadingOne, .shadingTwo, .shadingThree]
+	}
+}
+
+extension Card: Equatable {
+	static func ==(lhs: Card, rhs: Card) -> Bool {
+		return lhs.type == rhs.type && lhs.quantity == rhs.quantity && lhs.color == rhs.color && lhs.shading == rhs.shading
 	}
 }

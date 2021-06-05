@@ -15,11 +15,12 @@ struct Deck {
 		for type in Card.TypeCard.all {
 			for quantity in Card.Quantity.all {
 				for color in Card.Color.all {
-					for filling in Card.Filling.all {
-						cards.append(Card(type: type, quantity: quantity, color: color, filling: filling))
+					for shading in Card.Shading.all {
+						cards.append(Card(type: type, quantity: quantity, color: color, shading: shading))
 					}
 				}
 			}
 		}
+		cards.shuffle()
 	}
 }
