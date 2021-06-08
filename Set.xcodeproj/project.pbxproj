@@ -15,6 +15,7 @@
 		D0593CB42668F5A600271977 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0593CB32668F5A600271977 /* Constants.swift */; };
 		D0593CB72668F99200271977 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0593CB62668F99200271977 /* Card.swift */; };
 		D0713D18266ABF0E00FFBCE1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0713D17266ABF0E00FFBCE1 /* UIColor.swift */; };
+		D088D185266FFC1D00395760 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088D184266FFC1D00395760 /* Collection.swift */; };
 		D0B366882668FFED00B9EBBA /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B366872668FFED00B9EBBA /* Deck.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		D0593CB32668F5A600271977 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D0593CB62668F99200271977 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		D0713D17266ABF0E00FFBCE1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		D088D184266FFC1D00395760 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		D0B366872668FFED00B9EBBA /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				D0713D17266ABF0E00FFBCE1 /* UIColor.swift */,
+				D088D184266FFC1D00395760 /* Collection.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				D0593CA02668E39A00271977 /* SetViewController.swift in Sources */,
 				D0713D18266ABF0E00FFBCE1 /* UIColor.swift in Sources */,
 				D0593C9C2668E39A00271977 /* AppDelegate.swift in Sources */,
+				D088D185266FFC1D00395760 /* Collection.swift in Sources */,
 				D0B366882668FFED00B9EBBA /* Deck.swift in Sources */,
 				D0593CB42668F5A600271977 /* Constants.swift in Sources */,
 				D0593CB72668F99200271977 /* Card.swift in Sources */,

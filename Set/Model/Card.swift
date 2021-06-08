@@ -21,7 +21,7 @@ struct Card {
 		static let all = [TypeCard.shapeOne, .shapeTwo, .shapeThree]
 	}
 
-	enum Quantity: Int {
+	enum Quantity: Int, CaseIterable {
 		case one = 1, two, three
 
 		static let all = [Quantity.one, .two, .three]
@@ -30,7 +30,7 @@ struct Card {
 	enum Color: String {
 		case colorOne = "#FF0000FF"
 		case colorTwo = "#00FF00FF"
-		case colorThree = "0000FFFF"
+		case colorThree = "#0000FFFF"
 
 		static let all = [Color.colorOne, .colorTwo, .colorThree]
 	}
