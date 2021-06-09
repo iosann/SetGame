@@ -23,4 +23,25 @@ struct Deck {
 		}
 		cards.shuffle()
 	}
+
+	mutating func dealInitialCards() -> [Card] {
+		let initialCards = Array(cards.prefix(12))
+		cards.removeFirst(12)
+		return initialCards
+	}
+
+	mutating func threeCardsAreSelected(_ cards: [Card]) -> Bool {
+		var threeCardsAreMatched = false
+		if cards.count == 3 {
+			let types = Set([cards[0].type, cards[1].type, cards[2].type]).count
+			let quantyties = Set([cards[0].quantity, cards[1].quantity, cards[2].quantity]).count
+			let colors = Set([cards[0].color, cards[1].color, cards[2].color]).count
+			let shadings = Set([cards[0].shading, cards[1].shading, cards[2].shading]).count
+			let setIsSelected: Set<Int> = [types, quantyties, colors, shadings]
+
+			let rightSet: Set<Set> = [[1, 1, 1, 3], [1, 1, 3, 3], [1, 3, 3, 3], [3, 3, 3, 3]]
+			threeCardsAreMatched = rightSet.contains(setIsSelected)
+		}
+		return threeCardsAreMatched
+	}
 }

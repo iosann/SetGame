@@ -12,18 +12,28 @@ class SetViewController: UIViewController {
 	
 	@IBOutlet private var cardButtons: [UIButton]!
 	@IBOutlet private var deal3Button: UIButton!
-	private let deck = Deck()
+	private var deck = Deck()
 	private var verticalSpacing: CGFloat {
-		return cardButtons[0].bounds.insetBy(dx: 0, dy: Constants.verticalOffsetInsideButton).size.height / CGFloat(Card.Quantity.allCases.maxRawValue!)
+		let cards = buttonsAndCardsDictionary.values
+		let cardsSortedByQuantity = cards.sorted { (a, b) -> Bool in
+			a.quantity.rawValue > b.quantity.rawValue
+		}
+		guard let maxQuantity = cardsSortedByQuantity.first?.quantity.rawValue else { return 3 }
+		return cardButtons[0].bounds.insetBy(dx: 0, dy: Constants.verticalOffsetInsideButton).size.height / CGFloat(maxQuantity)
 	}
+
+	private var buttonsAreSelectedArray = [UIButton]()
+	private var buttonsAndCardsDictionary = [UIButton: Card]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		for (button, card) in zip(cardButtons, deck.dealInitialCards()) {
+			buttonsAndCardsDictionary[button] = card
+		}
 		customizeUI()
 	}
 
 	private func customizeUI() {
-		
 		for button in cardButtons {
 			button.layer.cornerRadius = Constants.cornerRadius
 			button.layer.borderWidth = Constants.borderWidth
@@ -34,7 +44,7 @@ class SetViewController: UIViewController {
 			if index > 11 {
 				button.isHidden = true
 			} else {
-				button.setAttributedTitle(createTitle(from: deck.cards[index]), for: .normal)
+				button.setAttributedTitle(createTitle(from: buttonsAndCardsDictionary[button]!), for: .normal)
 			}
 		}
 		deal3Button.layer.cornerRadius = Constants.cornerRadius
@@ -83,6 +93,34 @@ class SetViewController: UIViewController {
 	}
 
 	@IBAction private func cardTapped(_ sender: UIButton) {
+		if !buttonsAreSelectedArray.contains(sender), buttonsAreSelectedArray.count < 3 {
+			buttonsAreSelectedArray.append(sender)
+		} else {
+			guard let index = buttonsAreSelectedArray.firstIndex(of: sender) else { return }
+			buttonsAreSelectedArray.remove(at: index)
+		}
+		if buttonsAreSelectedArray.contains(sender) {
+			sender.layer.borderWidth = Constants.borderWidthButtonIsSelected
+			sender.layer.borderColor = Constants.borderColorButtonIsSelected
+			sender.backgroundColor = Constants.backgroundColorButtonIsSelected
+		} else {
+			sender.layer.borderWidth = Constants.borderWidth
+			sender.layer.borderColor = Constants.borderColor
+			sender.backgroundColor = .white
+		}
+
+		if buttonsAreSelectedArray.count == 3 {
+			var cards = [Card]()
+			for button in buttonsAreSelectedArray {
+				for buttonDict in buttonsAndCardsDictionary.keys {
+					if button == buttonDict {
+						cards.append(buttonsAndCardsDictionary[button]!)
+					}
+				}
+			}
+			let cardsAreMatched = deck.threeCardsAreSelected(cards)
+		}
+
 	}
 
 	@IBAction private func deal3MoreCardsTapped(_ sender: UIButton) {
