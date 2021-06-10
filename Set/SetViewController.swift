@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class SetViewController: UIViewController {
 
@@ -21,9 +22,11 @@ class SetViewController: UIViewController {
 		guard let maxQuantity = cardsSortedByQuantity.first?.quantity.rawValue else { return 3 }
 		return cardButtons[0].bounds.insetBy(dx: 0, dy: Constants.verticalOffsetInsideButton).size.height / CGFloat(maxQuantity)
 	}
-
 	private var buttonsAreSelectedArray = [UIButton]()
 	private var buttonsAndCardsDictionary = [UIButton: Card]()
+	private let successAnimation = AnimationView(name: "success-animation")
+	private let failAnimation = AnimationView(name: "fail-animation")
+	private let darkenedBackground = UIView()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,6 +34,7 @@ class SetViewController: UIViewController {
 			buttonsAndCardsDictionary[button] = card
 		}
 		customizeUI()
+		addAnimation()
 	}
 
 	private func customizeUI() {
@@ -92,6 +96,22 @@ class SetViewController: UIViewController {
 		return NSAttributedString(string: string, attributes: [.font: font, .foregroundColor: color, .strokeWidth: strokeWidth, .strokeColor: strokeColor as Any])
 	}
 
+	private func addAnimation() {
+		view.addSubview(darkenedBackground)
+		darkenedBackground.frame = view.bounds
+		darkenedBackground.isHidden = true
+
+		darkenedBackground.addSubview(successAnimation)
+		successAnimation.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width/2, height: view.bounds.size.width/2)
+		successAnimation.center = view.center
+		successAnimation.contentMode = .scaleAspectFit
+
+		darkenedBackground.addSubview(failAnimation)
+		failAnimation.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width/2, height: view.bounds.size.width/2)
+		failAnimation.center = view.center
+		failAnimation.contentMode = .scaleAspectFit
+	}
+
 	@IBAction private func cardTapped(_ sender: UIButton) {
 		if !buttonsAreSelectedArray.contains(sender), buttonsAreSelectedArray.count < 3 {
 			buttonsAreSelectedArray.append(sender)
@@ -119,6 +139,23 @@ class SetViewController: UIViewController {
 				}
 			}
 			let cardsAreMatched = deck.threeCardsAreSelected(cards)
+			if cardsAreMatched == true {
+				darkenedBackground.isHidden = false
+				darkenedBackground.backgroundColor = UIColor.green.withAlphaComponent(0.1)
+				successAnimation.play()
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [self] in
+					successAnimation.stop()
+					darkenedBackground.isHidden = true
+				}
+			} else {
+				darkenedBackground.isHidden = false
+				darkenedBackground.backgroundColor = UIColor.red.withAlphaComponent(0.1)
+				failAnimation.play()
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [self] in
+					failAnimation.stop()
+					darkenedBackground.isHidden = true
+				}
+			}
 		}
 
 	}
