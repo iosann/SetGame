@@ -10,6 +10,10 @@ import UIKit
 struct Deck {
 
 	private(set) var cards = [Card]()
+	private var threeMoreCards = [Card]()
+	var isEmpty: Bool {
+		return cards.count >= 3 ? false : true
+	}
 
 	init() {
 		for type in Card.TypeCard.all {
@@ -28,6 +32,13 @@ struct Deck {
 		let initialCards = Array(cards.prefix(12))
 		cards.removeFirst(12)
 		return initialCards
+	}
+
+	mutating func dealThreeCards() -> [Card] {
+		guard isEmpty == false else { return [] }
+			threeMoreCards = Array(cards.prefix(3))
+			cards.removeFirst(3)
+			return threeMoreCards
 	}
 
 	mutating func threeCardsAreSelected(_ cards: [Card]) -> Bool {
