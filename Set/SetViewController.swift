@@ -13,6 +13,7 @@ class SetViewController: UIViewController {
 	
 	@IBOutlet private var cardButtons: [UIButton]!
 	@IBOutlet private var deal3Button: UIButton!
+	@IBOutlet var scoreLabel: UILabel!
 	private var deck = Deck()
 	private var cardsOnScreen = [Card]()
 	private var cardsAreMatched = false
@@ -65,6 +66,11 @@ class SetViewController: UIViewController {
 		deal3Button.layer.cornerRadius = Constants.cornerRadius
 		deal3Button.layer.borderWidth = Constants.borderWidth
 		deal3Button.layer.borderColor = Constants.borderColor
+
+		scoreLabel.layer.cornerRadius = Constants.cornerRadius
+		scoreLabel.layer.borderWidth = Constants.borderWidth
+		scoreLabel.layer.borderColor = Constants.borderColor
+		scoreLabel.text = "Score: 0"
 	}
 
 	private func buttonIsSelectedUI(_ sender: UIButton) {
@@ -152,6 +158,7 @@ class SetViewController: UIViewController {
 				}
 			}
 			cardsAreMatched = deck.threeCardsAreSelected(cards)
+			scoreLabel.text = "Score: \(deck.score)"
 
 			darkenedBackground.isHidden = false
 			if cardsAreMatched == true {

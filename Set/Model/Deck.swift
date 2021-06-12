@@ -10,10 +10,14 @@ import UIKit
 struct Deck {
 
 	private(set) var cards = [Card]()
-	private var threeMoreCards = [Card]()
 	var isEmpty: Bool {
 		return cards.count >= 3 ? false : true
 	}
+	private enum Points: Int {
+		case bonus = 10
+		case fine = -10
+	}
+	private(set) var score = 0
 
 	init() {
 		for type in Card.TypeCard.all {
@@ -36,7 +40,7 @@ struct Deck {
 
 	mutating func dealThreeCards() -> [Card] {
 		guard isEmpty == false else { return [] }
-			threeMoreCards = Array(cards.prefix(3))
+			let threeMoreCards = Array(cards.prefix(3))
 			cards.removeFirst(3)
 			return threeMoreCards
 	}
@@ -52,6 +56,7 @@ struct Deck {
 
 			let rightSet: Set<Set> = [[1, 1, 1, 3], [1, 1, 3, 3], [1, 3, 3, 3], [3, 3, 3, 3]]
 			threeCardsAreMatched = rightSet.contains(setIsSelected)
+			score += threeCardsAreMatched ? Points.bonus.rawValue : Points.fine.rawValue
 		}
 		return threeCardsAreMatched
 	}
