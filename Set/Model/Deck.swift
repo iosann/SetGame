@@ -15,7 +15,7 @@ struct Deck {
 	}
 	private enum Points: Int {
 		case bonus = 10
-		case fine = -10
+		case fine = -5
 	}
 	private(set) var score = 0
 

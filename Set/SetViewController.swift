@@ -58,7 +58,7 @@ class SetViewController: UIViewController {
 		}
 		for (index, button) in cardButtons.enumerated() {
 			if index > 11 {
-				button.isHidden = true
+				hideButton(button)
 			} else {
 				cardButtons[index].setAttributedTitle(createTitle(from: cardsOnScreen[index]), for: .normal)
 			}
@@ -71,6 +71,13 @@ class SetViewController: UIViewController {
 		scoreLabel.layer.borderWidth = Constants.borderWidth
 		scoreLabel.layer.borderColor = Constants.borderColor
 		scoreLabel.text = "Score: 0"
+	}
+
+	private func hideButton(_ sender: UIButton) {
+		sender.backgroundColor = .clear
+		sender.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+		sender.setAttributedTitle(nil, for: .normal)
+		sender.isEnabled = false
 	}
 
 	private func buttonIsSelectedUI(_ sender: UIButton) {
@@ -181,7 +188,7 @@ class SetViewController: UIViewController {
 
 	@IBAction private func deal3MoreCardsTapped(_ sender: UIButton) {
 		if deck.isEmpty == true, buttonsAreSelectedArray.count == 3, cardsAreMatched == true {
-			buttonsAreSelectedArray.forEach { $0.isHidden = true; buttonIsDeselectedUI($0) }
+			buttonsAreSelectedArray.forEach { hideButton($0) }
 			buttonsAreSelectedArray = []
 			cardsAreMatched = false
 		}
@@ -196,12 +203,13 @@ class SetViewController: UIViewController {
 			}
 		} else {
 			var indicesOfHiddenButtons = [Int]()
-			for (index, button) in cardButtons.enumerated() where button.isHidden == true {
+			for (index, button) in cardButtons.enumerated() where button.backgroundColor == .clear {
 				indicesOfHiddenButtons.append(index)
 			}
 			for (index, card) in zip(Array(indicesOfHiddenButtons.prefix(3)), newCards) {
 				cardButtons[index].setAttributedTitle(createTitle(from: card), for: .normal)
-				cardButtons[index].isHidden = false
+				buttonIsDeselectedUI(cardButtons[index])
+				cardButtons[index].isEnabled = true
 				cardsOnScreen.insert(card, at: index)
 			}
 		}
